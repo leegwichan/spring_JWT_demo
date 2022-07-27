@@ -1,6 +1,8 @@
 package com.codestates.demo.config;
 
+import com.codestates.demo.filter.FirstFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        http.addFilterBefore(new FirstFilter(), BasicAuthenticationFilter.class); // First Filter 추가
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
