@@ -2,6 +2,8 @@ package com.codestates.demo.config;
 
 import com.codestates.demo.filter.FirstFilter;
 import com.codestates.demo.filter.JwtAuthenticationFilter;
+import com.codestates.demo.filter.JwtAuthorizationFilter;
+import com.codestates.demo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,6 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final CorsFilter corsFilter;
+    private final MemberRepository memberRepository;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -44,6 +47,7 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and().addFilter(corsFilter); // filter 추가
 
+
         return http.build();
     }
 
@@ -53,7 +57,8 @@ public class SecurityConfig {
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
             builder.addFilter(corsFilter)
-                    .addFilter(new JwtAuthenticationFilter(authenticationManager));
+                    .addFilter(new JwtAuthenticationFilter(authenticationManager))
+                    .addFilter(new JwtAuthorizationFilter(authenticationManager, memberRepository));
         }
     }
 

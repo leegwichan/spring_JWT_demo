@@ -36,7 +36,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 //            while ((input = br.readLine()) != null){
 //                System.out.println(input);
 //            }
-
             // -----------------------------------------
 
             ObjectMapper om = new ObjectMapper();
