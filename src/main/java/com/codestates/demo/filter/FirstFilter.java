@@ -32,6 +32,8 @@ public class FirstFilter implements Filter {
                 PrintWriter writer = res.getWriter();
                 writer.println("인증 실패");
             }
+        } else {
+            chain.doFilter(req, res); // 필터 계속 진행
         }
     }
 }
