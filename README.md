@@ -1,7 +1,6 @@
 # spring_JWT_demo
 
 - [Profile 적용하는 법](https://velog.io/@be_have98/IntelliJ-Spring-Boot%EC%9D%98-Active-Profile-%EC%84%A4%EC%A0%95)
----
 
 ## Profile : bearer
 ### 요청
