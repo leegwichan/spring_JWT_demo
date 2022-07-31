@@ -51,7 +51,18 @@
 
 ### 요청
 
-
+- POST "/join"
+  - body 에 {"username" : "lee", "password" : 123} 을 넣음
+  - 응답으로 "회원 가입 완료" 가 나옴
+- POST "/login"
+  - body 응답은 비어 있음
+  - 응답 Authorization 탭에 발급한 Token 값이 있음
+- GET "/api/v1/user"
+  - 발급받은 Token 값을 header Authorization 탭에 넣어서 요청
+  - 응답으로 "user"를 받음
+- GET "api/v1/admin"
+  - 발급받은 Token 값을 header Authorization 탭에 넣어서 요청
+  - 접근 권한이 허용되지 않아 403 ERROR가 발생
 
 ### 파일
 
